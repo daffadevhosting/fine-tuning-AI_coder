@@ -1,0 +1,837 @@
+[
+  {
+    "instruction": "Write a function to add two numbers",
+    "language": "python",
+    "code": "def add(a, b):\n    return a + b"
+  },
+  {
+    "instruction": "Write a function to reverse a string",
+    "language": "python",
+    "code": "def reverse_string(s):\n    return s[::-1]"
+  },
+  {
+    "instruction": "Write a function to check if a number is even",
+    "language": "python",
+    "code": "def is_even(n):\n    return n % 2 == 0"
+  },
+  {
+    "instruction": "Write a function to calculate factorial",
+    "language": "python",
+    "code": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    return n * factorial(n - 1)"
+  },
+  {
+    "instruction": "Write a function to find the maximum value in a list",
+    "language": "python",
+    "code": "def find_max(numbers):\n    if not numbers:\n        return None\n    return max(numbers)"
+  },
+  {
+    "instruction": "Write a function to check if a string is a palindrome",
+    "language": "python",
+    "code": "def is_palindrome(s):\n    s = s.lower().replace(' ', '')\n    return s == s[::-1]"
+  },
+  {
+    "instruction": "Write a function to count occurrences of a character in a string",
+    "language": "python",
+    "code": "def count_char(s, char):\n        return s.count(char)"
+  },
+  {
+    "instruction": "Write a function to merge two sorted lists",
+    "language": "python",
+    "code": "def merge_sorted(a, b):\n    result = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] < b[j]:\n            result.append(a[i])\n            i += 1\n        else:\n            result.append(b[j])\n            j += 1\n    result.extend(a[i:])\n    result.extend(b[j:])\n    return result"
+  },
+  {
+    "instruction": "Write a class for a simple stack",
+    "language": "python",
+    "code": "class Stack:\n    def __init__(self):\n        self.items = []\n\n    def push(self, item):\n        self.items.append(item)\n\n    def pop(self):\n        if not self.is_empty():\n            return self.items.pop()\n        return None\n\n    def is_empty(self):\n        return len(self.items) == 0\n\n    def peek(self):\n        if not self.is_empty():\n            return self.items[-1]\n        return None"
+  },
+  {
+    "instruction": "Write a function to flatten a nested list",
+    "language": "python",
+    "code": "def flatten(lst):\n    result = []\n    for item in lst:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result"
+  },
+  {
+    "instruction": "Write a function to remove duplicates from a list while preserving order",
+    "language": "python",
+    "code": "def remove_duplicates(lst):\n    seen = set()\n    result = []\n    for item in lst:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result"
+  },
+  {
+    "instruction": "Write a function to calculate the Fibonacci number at position n",
+    "language": "python",
+    "code": "def fibonacci(n):\n    if n <= 1:\n        return n\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    return b"
+  },
+  {
+    "instruction": "Write a function to check if a number is prime",
+    "language": "python",
+    "code": "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True"
+  },
+  {
+    "instruction": "Write a function to sort a list of dictionaries by a key",
+    "language": "python",
+    "code": "def sort_by_key(items, key):\n    return sorted(items, key=lambda x: x.get(key))"
+  },
+  {
+    "instruction": "Write a decorator that measures function execution time",
+    "language": "python",
+    "code": "import time\n\ndef timing_decorator(func):\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f\"{func.__name__} took {end - start:.4f} seconds\")\n        return result\n    return wrapper"
+  },
+  {
+    "instruction": "Write a function to read a JSON file and return its content",
+    "language": "python",
+    "code": "import json\n\ndef read_json(path):\n    with open(path, 'r', encoding='utf-8') as f:\n        return json.load(f)"
+  },
+  {
+    "instruction": "Write a function to write data to a JSON file",
+    "language": "python",
+    "code": "import json\n\ndef write_json(path, data):\n    with open(path, 'w', encoding='utf-8') as f:\n        json.dump(data, f, indent=2, ensure_ascii=False)"
+  },
+  {
+    "instruction": "Write a binary search function",
+    "language": "python",
+    "code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1"
+  },
+  {
+    "instruction": "Write a function to group a list of words by their first letter",
+    "language": "python",
+    "code": "from collections import defaultdict\n\ndef group_by_first_letter(words):\n    groups = defaultdict(list)\n    for word in words:\n        if word:\n            groups[word[0].lower()].append(word)\n    return dict(groups)"
+  },
+  {
+    "instruction": "Write a generator that yields Fibonacci numbers",
+    "language": "python",
+    "code": "def fibonacci_generator(n):\n    a, b = 0, 1\n    for _ in range(n):\n        yield a\n        a, b = b, a + b"
+  },
+  {
+    "instruction": "Write a function to deep merge two dictionaries",
+    "language": "python",
+    "code": "def deep_merge(a, b):\n    result = a.copy()\n    for key, value in b.items():\n        if key in result and isinstance(result[key], dict) and isinstance(value, dict):\n            result[key] = deep_merge(result[key], value)\n        else:\n            result[key] = value\n    return result"
+  },
+  {
+    "instruction": "Write a function to validate an email address with regex",
+    "language": "python",
+    "code": "import re\n\ndef is_valid_email(email):\n    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'\n    return bool(re.match(pattern, email))"
+  },
+  {
+    "instruction": "Write a function to calculate the GCD of two numbers",
+    "language": "python",
+    "code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a"
+  },
+  {
+    "instruction": "Write a function to chunk a list into groups of size n",
+    "language": "python",
+    "code": "def chunk_list(lst, n):\n    return [lst[i:i + n] for i in range(0, len(lst), n)]"
+  },
+  {
+    "instruction": "Write a function to find the most frequent element in a list",
+    "language": "python",
+    "code": "from collections import Counter\n\ndef most_frequent(lst):\n    if not lst:\n        return None\n    return Counter(lst).most_common(1)[0][0]"
+  },
+  {
+    "instruction": "Write a function to add two numbers",
+    "language": "javascript",
+    "code": "function add(a, b) {\n  return a + b;\n}"
+  },
+  {
+    "instruction": "Write a function to reverse a string",
+    "language": "javascript",
+    "code": "function reverseString(s) {\n  return s.split('').reverse().join('');\n}"
+  },
+  {
+    "instruction": "Write a function to check if a number is even",
+    "language": "javascript",
+    "code": "function isEven(n) {\n  return n % 2 === 0;\n}"
+  },
+  {
+    "instruction": "Write a function to calculate factorial",
+    "language": "javascript",
+    "code": "function factorial(n) {\n  if (n === 0 || n === 1) return 1;\n  return n * factorial(n - 1);\n}"
+  },
+  {
+    "instruction": "Write a function to find the maximum value in an array",
+    "language": "javascript",
+    "code": "function findMax(arr) {\n  if (!arr || arr.length === 0) return null;\n  return Math.max(...arr);\n}"
+  },
+  {
+    "instruction": "Write a function to check if a string is a palindrome",
+    "language": "javascript",
+    "code": "function isPalindrome(s) {\n  const cleaned = s.toLowerCase().replace(/\\s/g, '');\n  return cleaned === cleaned.split('').reverse().join('');\n}"
+  },
+  {
+    "instruction": "Write a function to remove duplicates from an array",
+    "language": "javascript",
+    "code": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}"
+  },
+  {
+    "instruction": "Write a function to debounce another function",
+    "language": "javascript",
+    "code": "function debounce(fn, delay) {\n  let timer;\n  return function (...args) {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn.apply(this, args), delay);\n  };\n}"
+  },
+  {
+    "instruction": "Write an async function to fetch JSON from a URL",
+    "language": "javascript",
+    "code": "async function fetchJson(url) {\n  const response = await fetch(url);\n  if (!response.ok) throw new Error(`HTTP error: ${response.status}`);\n  return response.json();\n}"
+  },
+  {
+    "instruction": "Write a simple Promise-based delay function",
+    "language": "javascript",
+    "code": "function delay(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms));\n}"
+  },
+  {
+    "instruction": "Write a function to deep clone an object",
+    "language": "javascript",
+    "code": "function deepClone(obj) {\n  return JSON.parse(JSON.stringify(obj));\n}"
+  },
+  {
+    "instruction": "Write a function to flatten a nested array",
+    "language": "javascript",
+    "code": "function flatten(arr) {\n  return arr.reduce((acc, val) =>\n    Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val), []);\n}"
+  },
+  {
+    "instruction": "Write a function to group array of objects by a key",
+    "language": "javascript",
+    "code": "function groupBy(arr, key) {\n  return arr.reduce((acc, item) => {\n    const k = item[key];\n    (acc[k] = acc[k] || []).push(item);\n    return acc;\n  }, {});\n}"
+  },
+  {
+    "instruction": "Write a throttle function",
+    "language": "javascript",
+    "code": "function throttle(fn, limit) {\n  let inThrottle;\n  return function (...args) {\n    if (!inThrottle) {\n      fn.apply(this, args);\n      inThrottle = true;\n      setTimeout(() => (inThrottle = false), limit);\n    }\n  };\n}"
+  },
+  {
+    "instruction": "Write a function to capitalize the first letter of each word",
+    "language": "javascript",
+    "code": "function capitalizeWords(str) {\n  return str.replace(/\\b\\w/g, char => char.toUpperCase());\n}"
+  },
+  {
+    "instruction": "Write a memoize function for expensive computations",
+    "language": "javascript",
+    "code": "function memoize(fn) {\n  const cache = new Map();\n  return function (...args) {\n    const key = JSON.stringify(args);\n    if (cache.has(key)) return cache.get(key);\n    const result = fn.apply(this, args);\n    cache.set(key, result);\n    return result;\n  };\n}"
+  },
+  {
+    "instruction": "Write a function to shuffle an array using Fisher-Yates",
+    "language": "javascript",
+    "code": "function shuffle(arr) {\n  const result = [...arr];\n  for (let i = result.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [result[i], result[j]] = [result[j], result[i]];\n  }\n  return result;\n}"
+  },
+  {
+    "instruction": "Write a class for a simple EventEmitter",
+    "language": "javascript",
+    "code": "class EventEmitter {\n  constructor() {\n    this.events = {};\n  }\n\n  on(event, listener) {\n    if (!this.events[event]) this.events[event] = [];\n    this.events[event].push(listener);\n  }\n\n  emit(event, ...args) {\n    (this.events[event] || []).forEach(fn => fn(...args));\n  }\n\n  off(event, listener) {\n    this.events[event] = (this.events[event] || []).filter(fn => fn !== listener);\n  }\n}"
+  },
+  {
+    "instruction": "Write a function to convert camelCase to snake_case",
+    "language": "javascript",
+    "code": "function camelToSnake(str) {\n  return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);\n}"
+  },
+  {
+    "instruction": "Write a function to parse query string into an object",
+    "language": "javascript",
+    "code": "function parseQuery(query) {\n  return Object.fromEntries(new URLSearchParams(query));\n}"
+  },
+  {
+    "instruction": "Write a function to check if two objects are deeply equal",
+    "language": "javascript",
+    "code": "function deepEqual(a, b) {\n  if (a === b) return true;\n  if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) return false;\n  const keysA = Object.keys(a);\n  const keysB = Object.keys(b);\n  if (keysA.length !== keysB.length) return false;\n  return keysA.every(key => deepEqual(a[key], b[key]));\n}"
+  },
+  {
+    "instruction": "Write a function that returns unique values from array of objects by key",
+    "language": "javascript",
+    "code": "function uniqueBy(arr, key) {\n  const seen = new Set();\n  return arr.filter(item => {\n    const val = item[key];\n    if (seen.has(val)) return false;\n    seen.add(val);\n    return true;\n  });\n}"
+  },
+  {
+    "instruction": "Write a function to add two numbers",
+    "language": "typescript",
+    "code": "function add(a: number, b: number): number {\n  return a + b;\n}"
+  },
+  {
+    "instruction": "Write a function to reverse a string",
+    "language": "typescript",
+    "code": "function reverseString(s: string): string {\n  return s.split('').reverse().join('');\n}"
+  },
+  {
+    "instruction": "Write an interface for a User object",
+    "language": "typescript",
+    "code": "interface User {\n  id: number;\n  name: string;\n  email: string;\n  isActive?: boolean;\n}"
+  },
+  {
+    "instruction": "Write a generic function to get the first element of an array",
+    "language": "typescript",
+    "code": "function first<T>(arr: T[]): T | undefined {\n  return arr[0];\n}"
+  },
+  {
+    "instruction": "Write a type-safe function to filter non-null values",
+    "language": "typescript",
+    "code": "function nonNullable<T>(value: T): value is NonNullable<T> {\n  return value !== null && value !== undefined;\n}"
+  },
+  {
+    "instruction": "Write a generic function to swap two values in a tuple",
+    "language": "typescript",
+    "code": "function swap<T, U>(tuple: [T, U]): [U, T] {\n  return [tuple[1], tuple[0]];\n}"
+  },
+  {
+    "instruction": "Write an enum for HTTP status codes",
+    "language": "typescript",
+    "code": "enum HttpStatus {\n  OK = 200,\n  Created = 201,\n  BadRequest = 400,\n  Unauthorized = 401,\n  NotFound = 404,\n  InternalServerError = 500,\n}"
+  },
+  {
+    "instruction": "Write a typed function to group array items by a key",
+    "language": "typescript",
+    "code": "function groupBy<T, K extends keyof T>(arr: T[], key: K): Record<string, T[]> {\n  return arr.reduce((acc, item) => {\n    const k = String(item[key]);\n    (acc[k] = acc[k] || []).push(item);\n    return acc;\n  }, {} as Record<string, T[]>);\n}"
+  },
+  {
+    "instruction": "Write a utility type that makes all properties optional recursively",
+    "language": "typescript",
+    "code": "type DeepPartial<T> = {\n  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];\n};"
+  },
+  {
+    "instruction": "Write a class with private fields and getters for bank account",
+    "language": "typescript",
+    "code": "class BankAccount {\n  #balance: number;\n\n  constructor(initial: number = 0) {\n    this.#balance = initial;\n  }\n\n  get balance(): number {\n    return this.#balance;\n  }\n\n  deposit(amount: number): void {\n    if (amount > 0) this.#balance += amount;\n  }\n\n  withdraw(amount: number): boolean {\n    if (amount > 0 && amount <= this.#balance) {\n      this.#balance -= amount;\n      return true;\n    }\n    return false;\n  }\n}"
+  },
+  {
+    "instruction": "Write a type guard for checking if value is a string",
+    "language": "typescript",
+    "code": "function isString(value: unknown): value is string {\n  return typeof value === 'string';\n}"
+  },
+  {
+    "instruction": "Write a generic Result type for success or error",
+    "language": "typescript",
+    "code": "type Result<T, E = Error> =\n  | { success: true; data: T }\n  | { success: false; error: E };\n\nfunction ok<T>(data: T): Result<T> {\n  return { success: true, data };\n}\n\nfunction err<E = Error>(error: E): Result<never, E> {\n  return { success: false, error };\n}"
+  },
+  {
+    "instruction": "Write a function to pick specific keys from an object",
+    "language": "typescript",
+    "code": "function pick<T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {\n  const result = {} as Pick<T, K>;\n  keys.forEach(key => {\n    if (key in obj) result[key] = obj[key];\n  });\n  return result;\n}"
+  },
+  {
+    "instruction": "Write an async function that retries on failure",
+    "language": "typescript",
+    "code": "async function retry<T>(\n  fn: () => Promise<T>,\n  retries: number = 3,\n  delayMs: number = 1000\n): Promise<T> {\n  try {\n    return await fn();\n  } catch (err) {\n    if (retries <= 0) throw err;\n    await new Promise(r => setTimeout(r, delayMs));\n    return retry(fn, retries - 1, delayMs);\n  }\n}"
+  },
+  {
+    "instruction": "Write a function with overloads for formatting a date",
+    "language": "typescript",
+    "code": "function formatDate(date: Date): string;\nfunction formatDate(date: Date, format: 'short' | 'long'): string;\nfunction formatDate(date: Date, format: 'short' | 'long' = 'short'): string {\n  if (format === 'long') {\n    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });\n  }\n  return date.toLocaleDateString();\n}"
+  },
+  {
+    "instruction": "Write a method to add two numbers",
+    "language": "java",
+    "code": "public int add(int a, int b) {\n    return a + b;\n}"
+  },
+  {
+    "instruction": "Write a method to reverse a string",
+    "language": "java",
+    "code": "public String reverseString(String s) {\n    return new StringBuilder(s).reverse().toString();\n}"
+  },
+  {
+    "instruction": "Write a method to check if a number is even",
+    "language": "java",
+    "code": "public boolean isEven(int n) {\n    return n % 2 == 0;\n}"
+  },
+  {
+    "instruction": "Write a method to calculate factorial",
+    "language": "java",
+    "code": "public long factorial(int n) {\n    if (n == 0 || n == 1) return 1;\n    return n * factorial(n - 1);\n}"
+  },
+  {
+    "instruction": "Write a simple class for a Person with name and age",
+    "language": "java",
+    "code": "public class Person {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public int getAge() {\n        return age;\n    }\n}"
+  },
+  {
+    "instruction": "Write a method to find the maximum value in an array",
+    "language": "java",
+    "code": "public int findMax(int[] arr) {\n    if (arr == null || arr.length == 0) {\n        throw new IllegalArgumentException(\"Array is empty\");\n    }\n    int max = arr[0];\n    for (int i = 1; i < arr.length; i++) {\n        if (arr[i] > max) max = arr[i];\n    }\n    return max;\n}"
+  },
+  {
+    "instruction": "Write a method to check if a string is a palindrome",
+    "language": "java",
+    "code": "public boolean isPalindrome(String s) {\n    String cleaned = s.toLowerCase().replaceAll(\"\\\\s+\", \"\");\n    int left = 0, right = cleaned.length() - 1;\n    while (left < right) {\n        if (cleaned.charAt(left) != cleaned.charAt(right)) return false;\n        left++;\n        right--;\n    }\n    return true;\n}"
+  },
+  {
+    "instruction": "Write a method using Stream to filter even numbers",
+    "language": "java",
+    "code": "public List<Integer> filterEven(List<Integer> numbers) {\n    return numbers.stream()\n        .filter(n -> n % 2 == 0)\n        .collect(Collectors.toList());\n}"
+  },
+  {
+    "instruction": "Write a method to count word frequency in a string",
+    "language": "java",
+    "code": "public Map<String, Long> wordFrequency(String text) {\n    return Arrays.stream(text.toLowerCase().split(\"\\\\W+\"))\n        .filter(w -> !w.isEmpty())\n        .collect(Collectors.groupingBy(w -> w, Collectors.counting()));\n}"
+  },
+  {
+    "instruction": "Write a simple generic Stack class",
+    "language": "java",
+    "code": "public class Stack<T> {\n    private List<T> items = new ArrayList<>();\n\n    public void push(T item) {\n        items.add(item);\n    }\n\n    public T pop() {\n        if (items.isEmpty()) throw new EmptyStackException();\n        return items.remove(items.size() - 1);\n    }\n\n    public boolean isEmpty() {\n        return items.isEmpty();\n    }\n\n    public T peek() {\n        if (items.isEmpty()) throw new EmptyStackException();\n        return items.get(items.size() - 1);\n    }\n}"
+  },
+  {
+    "instruction": "Write a method to perform binary search on a sorted array",
+    "language": "java",
+    "code": "public int binarySearch(int[] arr, int target) {\n    int left = 0, right = arr.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (arr[mid] == target) return mid;\n        if (arr[mid] < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return -1;\n}"
+  },
+  {
+    "instruction": "Write an enum for days of the week",
+    "language": "java",
+    "code": "public enum DayOfWeek {\n    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY\n}"
+  },
+  {
+    "instruction": "Write a method that uses Optional to safely get a value",
+    "language": "java",
+    "code": "public String getUserName(Optional<User> user) {\n    return user.map(User::getName).orElse(\"Anonymous\");\n}"
+  },
+  {
+    "instruction": "Write a Comparator to sort persons by age then name",
+    "language": "java",
+    "code": "Comparator<Person> byAgeThenName = Comparator\n    .comparingInt(Person::getAge)\n    .thenComparing(Person::getName);"
+  },
+  {
+    "instruction": "Write a method to calculate sum using reduce on a stream",
+    "language": "java",
+    "code": "public int sum(List<Integer> numbers) {\n    return numbers.stream().reduce(0, Integer::sum);\n}"
+  },
+  {
+    "instruction": "Write a simple Builder pattern class for a Car",
+    "language": "java",
+    "code": "public class Car {\n    private final String brand;\n    private final String model;\n    private final int year;\n\n    private Car(Builder builder) {\n        this.brand = builder.brand;\n        this.model = builder.model;\n        this.year = builder.year;\n    }\n\n    public static class Builder {\n        private String brand;\n        private String model;\n        private int year;\n\n        public Builder brand(String brand) {\n            this.brand = brand;\n            return this;\n        }\n\n        public Builder model(String model) {\n            this.model = model;\n            return this;\n        }\n\n        public Builder year(int year) {\n            this.year = year;\n            return this;\n        }\n\n        public Car build() {\n            return new Car(this);\n        }\n    }\n}"
+  },
+  {
+    "instruction": "Write a method to read all lines from a file",
+    "language": "java",
+    "code": "public List<String> readLines(String path) throws IOException {\n    return Files.readAllLines(Paths.get(path));\n}"
+  },
+  {
+    "instruction": "Write a method to check if a number is prime",
+    "language": "java",
+    "code": "public boolean isPrime(int n) {\n    if (n < 2) return false;\n    for (int i = 2; i * i <= n; i++) {\n        if (n % i == 0) return false;\n    }\n    return true;\n}"
+  },
+  {
+    "instruction": "Write a SQL query to select all users",
+    "language": "sql",
+    "code": "SELECT * FROM users;"
+  },
+  {
+    "instruction": "Write a SQL query to select users older than 18",
+    "language": "sql",
+    "code": "SELECT * FROM users WHERE age > 18;"
+  },
+  {
+    "instruction": "Write a SQL query to count the number of orders per customer",
+    "language": "sql",
+    "code": "SELECT customer_id, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer_id;"
+  },
+  {
+    "instruction": "Write a SQL query to join users and orders tables",
+    "language": "sql",
+    "code": "SELECT u.name, o.order_date, o.total\nFROM users u\nINNER JOIN orders o ON u.id = o.user_id;"
+  },
+  {
+    "instruction": "Write a SQL query to find the top 5 most expensive products",
+    "language": "sql",
+    "code": "SELECT name, price\nFROM products\nORDER BY price DESC\nLIMIT 5;"
+  },
+  {
+    "instruction": "Write a SQL query to update a user's email",
+    "language": "sql",
+    "code": "UPDATE users\nSET email = 'new@example.com'\nWHERE id = 1;"
+  },
+  {
+    "instruction": "Write a SQL query to delete inactive users",
+    "language": "sql",
+    "code": "DELETE FROM users\nWHERE is_active = false;"
+  },
+  {
+    "instruction": "Write a SQL query with a LEFT JOIN to get users and their orders",
+    "language": "sql",
+    "code": "SELECT u.id, u.name, o.id AS order_id\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id;"
+  },
+  {
+    "instruction": "Write a SQL query to find customers who never placed an order",
+    "language": "sql",
+    "code": "SELECT u.id, u.name\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id\nWHERE o.id IS NULL;"
+  },
+  {
+    "instruction": "Write a SQL query to calculate total revenue per month",
+    "language": "sql",
+    "code": "SELECT\n  DATE_TRUNC('month', order_date) AS month,\n  SUM(total) AS revenue\nFROM orders\nGROUP BY DATE_TRUNC('month', order_date)\nORDER BY month;"
+  },
+  {
+    "instruction": "Write a SQL query using HAVING to filter groups",
+    "language": "sql",
+    "code": "SELECT customer_id, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer_id\nHAVING COUNT(*) > 5;"
+  },
+  {
+    "instruction": "Write a SQL query with a subquery to find products above average price",
+    "language": "sql",
+    "code": "SELECT name, price\nFROM products\nWHERE price > (SELECT AVG(price) FROM products);"
+  },
+  {
+    "instruction": "Write a SQL query to insert a new user",
+    "language": "sql",
+    "code": "INSERT INTO users (name, email, age)\nVALUES ('Alice', 'alice@example.com', 28);"
+  },
+  {
+    "instruction": "Write a SQL query using CASE for conditional logic",
+    "language": "sql",
+    "code": "SELECT name,\n  CASE\n    WHEN age < 18 THEN 'Minor'\n    WHEN age < 65 THEN 'Adult'\n    ELSE 'Senior'\n  END AS age_group\nFROM users;"
+  },
+  {
+    "instruction": "Write a SQL query to find the second highest salary",
+    "language": "sql",
+    "code": "SELECT MAX(salary) AS second_highest\nFROM employees\nWHERE salary < (SELECT MAX(salary) FROM employees);"
+  },
+  {
+    "instruction": "Write a SQL query with UNION to combine two result sets",
+    "language": "sql",
+    "code": "SELECT name, 'customer' AS type FROM customers\nUNION\nSELECT name, 'supplier' AS type FROM suppliers\nORDER BY name;"
+  },
+  {
+    "instruction": "Write a SQL query using window function RANK",
+    "language": "sql",
+    "code": "SELECT name, salary,\n  RANK() OVER (ORDER BY salary DESC) AS salary_rank\nFROM employees;"
+  },
+  {
+    "instruction": "Write a SQL query to create a table for products",
+    "language": "sql",
+    "code": "CREATE TABLE products (\n  id SERIAL PRIMARY KEY,\n  name VARCHAR(100) NOT NULL,\n  price DECIMAL(10, 2) NOT NULL,\n  category_id INTEGER REFERENCES categories(id),\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);"
+  },
+  {
+    "instruction": "Write a SQL query with CTE to find top customers",
+    "language": "sql",
+    "code": "WITH customer_totals AS (\n  SELECT customer_id, SUM(total) AS total_spent\n  FROM orders\n  GROUP BY customer_id\n)\nSELECT u.name, ct.total_spent\nFROM customer_totals ct\nJOIN users u ON u.id = ct.customer_id\nORDER BY ct.total_spent DESC\nLIMIT 10;"
+  },
+  {
+    "instruction": "Write a SQL query to soft-delete records by setting deleted_at",
+    "language": "sql",
+    "code": "UPDATE users\nSET deleted_at = CURRENT_TIMESTAMP\nWHERE id = 42;"
+  },
+  {
+    "instruction": "Write a function to add two numbers",
+    "language": "go",
+    "code": "func add(a, b int) int {\n\treturn a + b\n}"
+  },
+  {
+    "instruction": "Write a function to reverse a string",
+    "language": "go",
+    "code": "func reverseString(s string) string {\n\trunes := []rune(s)\n\tfor i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {\n\t\trunes[i], runes[j] = runes[j], runes[i]\n\t}\n\treturn string(runes)\n}"
+  },
+  {
+    "instruction": "Write a function to check if a number is even",
+    "language": "go",
+    "code": "func isEven(n int) bool {\n\treturn n%2 == 0\n}"
+  },
+  {
+    "instruction": "Write a simple struct for a Person",
+    "language": "go",
+    "code": "type Person struct {\n\tName string\n\tAge  int\n}"
+  },
+  {
+    "instruction": "Write a function that returns an error if the value is negative",
+    "language": "go",
+    "code": "func checkPositive(n int) error {\n\tif n < 0 {\n\t\treturn fmt.Errorf(\"value must be positive, got %d\", n)\n\t}\n\treturn nil\n}"
+  },
+  {
+    "instruction": "Write a function to calculate factorial",
+    "language": "go",
+    "code": "func factorial(n int) int {\n\tif n == 0 || n == 1 {\n\t\treturn 1\n\t}\n\treturn n * factorial(n-1)\n}"
+  },
+  {
+    "instruction": "Write a method on Person struct to greet",
+    "language": "go",
+    "code": "func (p Person) Greet() string {\n\treturn fmt.Sprintf(\"Hello, my name is %s\", p.Name)\n}"
+  },
+  {
+    "instruction": "Write a function to find the max value in a slice of ints",
+    "language": "go",
+    "code": "func max(nums []int) (int, error) {\n\tif len(nums) == 0 {\n\t\treturn 0, fmt.Errorf(\"empty slice\")\n\t}\n\tm := nums[0]\n\tfor _, n := range nums[1:] {\n\t\tif n > m {\n\t\t\tm = n\n\t\t}\n\t}\n\treturn m, nil\n}"
+  },
+  {
+    "instruction": "Write a goroutine-safe counter using mutex",
+    "language": "go",
+    "code": "type Counter struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *Counter) Inc() {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value++\n}\n\nfunc (c *Counter) Value() int {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\treturn c.value\n}"
+  },
+  {
+    "instruction": "Write a function that filters a slice with a predicate",
+    "language": "go",
+    "code": "func filter[T any](slice []T, pred func(T) bool) []T {\n\tvar result []T\n\tfor _, v := range slice {\n\t\tif pred(v) {\n\t\t\tresult = append(result, v)\n\t\t}\n\t}\n\treturn result\n}"
+  },
+  {
+    "instruction": "Write a function to map a slice with a transform function",
+    "language": "go",
+    "code": "func mapSlice[T, U any](slice []T, fn func(T) U) []U {\n\tresult := make([]U, len(slice))\n\tfor i, v := range slice {\n\t\tresult[i] = fn(v)\n\t}\n\treturn result\n}"
+  },
+  {
+    "instruction": "Write a function to check if a string is a palindrome",
+    "language": "go",
+    "code": "func isPalindrome(s string) bool {\n\ts = strings.ToLower(strings.ReplaceAll(s, \" \", \"\"))\n\tfor i := 0; i < len(s)/2; i++ {\n\t\tif s[i] != s[len(s)-1-i] {\n\t\t\treturn false\n\t\t}\n\t}\n\treturn true\n}"
+  },
+  {
+    "instruction": "Write an interface for a shape with Area method",
+    "language": "go",
+    "code": "type Shape interface {\n\tArea() float64\n}\n\ntype Circle struct {\n\tRadius float64\n}\n\nfunc (c Circle) Area() float64 {\n\treturn math.Pi * c.Radius * c.Radius\n}"
+  },
+  {
+    "instruction": "Write a function that reads a file and returns its content",
+    "language": "go",
+    "code": "func readFile(path string) (string, error) {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\treturn \"\", err\n\t}\n\treturn string(data), nil\n}"
+  },
+  {
+    "instruction": "Write a function that removes duplicates from a slice of strings",
+    "language": "go",
+    "code": "func uniqueStrings(items []string) []string {\n\tseen := make(map[string]bool)\n\tvar result []string\n\tfor _, item := range items {\n\t\tif !seen[item] {\n\t\t\tseen[item] = true\n\t\t\tresult = append(result, item)\n\t\t}\n\t}\n\treturn result\n}"
+  },
+  {
+    "instruction": "Write a function to add two numbers",
+    "language": "php",
+    "code": "function add($a, $b) {\n    return $a + $b;\n}"
+  },
+  {
+    "instruction": "Write a function to reverse a string",
+    "language": "php",
+    "code": "function reverseString($s) {\n    return strrev($s);\n}"
+  },
+  {
+    "instruction": "Write a function to check if a number is even",
+    "language": "php",
+    "code": "function isEven($n) {\n    return $n % 2 === 0;\n}"
+  },
+  {
+    "instruction": "Write a function to calculate factorial",
+    "language": "php",
+    "code": "function factorial($n) {\n    if ($n === 0 || $n === 1) return 1;\n    return $n * factorial($n - 1);\n}"
+  },
+  {
+    "instruction": "Write a function to check if a string is a palindrome",
+    "language": "php",
+    "code": "function isPalindrome($s) {\n    $cleaned = strtolower(str_replace(' ', '', $s));\n    return $cleaned === strrev($cleaned);\n}"
+  },
+  {
+    "instruction": "Write a function to remove duplicates from an array",
+    "language": "php",
+    "code": "function removeDuplicates(array $arr): array {\n    return array_values(array_unique($arr));\n}"
+  },
+  {
+    "instruction": "Write a simple class for a User",
+    "language": "php",
+    "code": "class User {\n    private string $name;\n    private string $email;\n\n    public function __construct(string $name, string $email) {\n        $this->name = $name;\n        $this->email = $email;\n    }\n\n    public function getName(): string {\n        return $this->name;\n    }\n\n    public function getEmail(): string {\n        return $this->email;\n    }\n}"
+  },
+  {
+    "instruction": "Write a function to filter an array with a callback",
+    "language": "php",
+    "code": "function filterArray(array $arr, callable $callback): array {\n    return array_values(array_filter($arr, $callback));\n}"
+  },
+  {
+    "instruction": "Write a function to group array of associative arrays by a key",
+    "language": "php",
+    "code": "function groupBy(array $items, string $key): array {\n    $result = [];\n    foreach ($items as $item) {\n        $k = $item[$key];\n        $result[$k][] = $item;\n    }\n    return $result;\n}"
+  },
+  {
+    "instruction": "Write a function to safely get a nested array value",
+    "language": "php",
+    "code": "function arrayGet(array $arr, string $path, $default = null) {\n    $keys = explode('.', $path);\n    foreach ($keys as $key) {\n        if (!is_array($arr) || !array_key_exists($key, $arr)) {\n            return $default;\n        }\n        $arr = $arr[$key];\n    }\n    return $arr;\n}"
+  },
+  {
+    "instruction": "Write a function to validate an email address",
+    "language": "php",
+    "code": "function isValidEmail(string $email): bool {\n    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;\n}"
+  },
+  {
+    "instruction": "Write a function that returns JSON response helper",
+    "language": "php",
+    "code": "function jsonResponse(array $data, int $status = 200): void {\n    http_response_code($status);\n    header('Content-Type: application/json');\n    echo json_encode($data);\n}"
+  },
+  {
+    "instruction": "Write a simple HTML button with an onclick alert",
+    "language": "html",
+    "code": "<button onclick=\"alert('Hello!')\">Click me</button>"
+  },
+  {
+    "instruction": "Write a basic HTML form with name and email fields",
+    "language": "html",
+    "code": "<form action=\"/submit\" method=\"post\">\n  <label for=\"name\">Name:</label>\n  <input type=\"text\" id=\"name\" name=\"name\" required>\n  <label for=\"email\">Email:</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n  <button type=\"submit\">Submit</button>\n</form>"
+  },
+  {
+    "instruction": "Write an HTML table with header and three rows of data",
+    "language": "html",
+    "code": "<table>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>Age</th>\n      <th>City</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr><td>Alice</td><td>28</td><td>Jakarta</td></tr>\n    <tr><td>Bob</td><td>34</td><td>Bandung</td></tr>\n    <tr><td>Carol</td><td>22</td><td>Surabaya</td></tr>\n  </tbody>\n</table>"
+  },
+  {
+    "instruction": "Write HTML for a navigation bar with three links",
+    "language": "html",
+    "code": "<nav>\n  <ul>\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"/about\">About</a></li>\n    <li><a href=\"/contact\">Contact</a></li>\n  </ul>\n</nav>"
+  },
+  {
+    "instruction": "Write an HTML card component with image, title and description",
+    "language": "html",
+    "code": "<article class=\"card\">\n  <img src=\"image.jpg\" alt=\"Product image\">\n  <h2>Product Title</h2>\n  <p>Short description of the product goes here.</p>\n  <a href=\"/product/1\">View details</a>\n</article>"
+  },
+  {
+    "instruction": "Write HTML for a responsive image with srcset",
+    "language": "html",
+    "code": "<img\n  src=\"photo-800.jpg\"\n  srcset=\"photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w\"\n  sizes=\"(max-width: 600px) 400px, 800px\"\n  alt=\"Scenic landscape\">"
+  },
+  {
+    "instruction": "Write an accessible HTML button with aria-label",
+    "language": "html",
+    "code": "<button type=\"button\" aria-label=\"Close dialog\" onclick=\"closeDialog()\">\n  <span aria-hidden=\"true\">&times;</span>\n</button>"
+  },
+  {
+    "instruction": "Write HTML for a definition list",
+    "language": "html",
+    "code": "<dl>\n  <dt>HTML</dt>\n  <dd>HyperText Markup Language</dd>\n  <dt>CSS</dt>\n  <dd>Cascading Style Sheets</dd>\n  <dt>JS</dt>\n  <dd>JavaScript</dd>\n</dl>"
+  },
+  {
+    "instruction": "Write CSS to center a div both horizontally and vertically",
+    "language": "css",
+    "code": ".center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n}"
+  },
+  {
+    "instruction": "Write CSS for a simple card with shadow and rounded corners",
+    "language": "css",
+    "code": ".card {\n  background: white;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n  padding: 24px;\n  max-width: 400px;\n}"
+  },
+  {
+    "instruction": "Write CSS for a responsive grid with three columns",
+    "language": "css",
+    "code": ".grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n\n@media (max-width: 768px) {\n  .grid {\n    grid-template-columns: 1fr;\n  }\n}"
+  },
+  {
+    "instruction": "Write CSS for a button with hover and active states",
+    "language": "css",
+    "code": ".btn {\n  background: #3b82f6;\n  color: white;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  cursor: pointer;\n  transition: background 0.2s;\n}\n\n.btn:hover {\n  background: #2563eb;\n}\n\n.btn:active {\n  background: #1d4ed8;\n}"
+  },
+  {
+    "instruction": "Write CSS for a sticky header",
+    "language": "css",
+    "code": ".header {\n  position: sticky;\n  top: 0;\n  z-index: 100;\n  background: white;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);\n  padding: 12px 24px;\n}"
+  },
+  {
+    "instruction": "Write CSS dark mode styles using prefers-color-scheme",
+    "language": "css",
+    "code": "body {\n  background: white;\n  color: #111;\n}\n\n@media (prefers-color-scheme: dark) {\n  body {\n    background: #111;\n    color: #eee;\n  }\n}"
+  },
+  {
+    "instruction": "Write CSS for a loading spinner animation",
+    "language": "css",
+    "code": ".spinner {\n  width: 40px;\n  height: 40px;\n  border: 4px solid #e5e7eb;\n  border-top-color: #3b82f6;\n  border-radius: 50%;\n  animation: spin 0.8s linear infinite;\n}\n\n@keyframes spin {\n  to { transform: rotate(360deg); }\n}"
+  },
+  {
+    "instruction": "Write CSS to truncate text with ellipsis",
+    "language": "css",
+    "code": ".truncate {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 200px;\n}"
+  },
+  {
+    "instruction": "Write CSS for a custom checkbox style",
+    "language": "css",
+    "code": "input[type=\"checkbox\"] {\n  appearance: none;\n  width: 20px;\n  height: 20px;\n  border: 2px solid #d1d5db;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\ninput[type=\"checkbox\"]:checked {\n  background: #3b82f6;\n  border-color: #3b82f6;\n}"
+  },
+  {
+    "instruction": "Write CSS for a two-column layout with sidebar",
+    "language": "css",
+    "code": ".layout {\n  display: grid;\n  grid-template-columns: 240px 1fr;\n  min-height: 100vh;\n}\n\n.sidebar {\n  background: #f3f4f6;\n  padding: 16px;\n}\n\n.main {\n  padding: 24px;\n}"
+  },
+  {
+    "instruction": "Write a C++ function to add two numbers",
+    "language": "cpp",
+    "code": "int add(int a, int b) {\n    return a + b;\n}"
+  },
+  {
+    "instruction": "Write a C++ function to reverse a string",
+    "language": "cpp",
+    "code": "std::string reverseString(std::string s) {\n    std::reverse(s.begin(), s.end());\n    return s;\n}"
+  },
+  {
+    "instruction": "Write a C++ function to check if a number is even",
+    "language": "cpp",
+    "code": "bool isEven(int n) {\n    return n % 2 == 0;\n}"
+  },
+  {
+    "instruction": "Write a C++ function to calculate factorial",
+    "language": "cpp",
+    "code": "long long factorial(int n) {\n    if (n == 0 || n == 1) return 1;\n    return n * factorial(n - 1);\n}"
+  },
+  {
+    "instruction": "Write a C++ class for a simple Vector2D",
+    "language": "cpp",
+    "code": "class Vector2D {\npublic:\n    double x, y;\n\n    Vector2D(double x = 0, double y = 0) : x(x), y(y) {}\n\n    Vector2D operator+(const Vector2D& other) const {\n        return Vector2D(x + other.x, y + other.y);\n    }\n\n    double magnitude() const {\n        return std::sqrt(x * x + y * y);\n    }\n};"
+  },
+  {
+    "instruction": "Write a C++ function to find max in a vector",
+    "language": "cpp",
+    "code": "int findMax(const std::vector<int>& nums) {\n    if (nums.empty()) throw std::invalid_argument(\"empty vector\");\n    return *std::max_element(nums.begin(), nums.end());\n}"
+  },
+  {
+    "instruction": "Write a C++ template function to swap two values",
+    "language": "cpp",
+    "code": "template <typename T>\nvoid swapValues(T& a, T& b) {\n    T temp = a;\n    a = b;\n    b = temp;\n}"
+  },
+  {
+    "instruction": "Write a C++ function for binary search",
+    "language": "cpp",
+    "code": "int binarySearch(const std::vector<int>& arr, int target) {\n    int left = 0, right = static_cast<int>(arr.size()) - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (arr[mid] == target) return mid;\n        if (arr[mid] < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return -1;\n}"
+  },
+  {
+    "instruction": "Write a C++ lambda that filters even numbers",
+    "language": "cpp",
+    "code": "std::vector<int> filterEven(const std::vector<int>& nums) {\n    std::vector<int> result;\n    std::copy_if(nums.begin(), nums.end(), std::back_inserter(result),\n        [](int n) { return n % 2 == 0; });\n    return result;\n}"
+  },
+  {
+    "instruction": "Write a C++ function to check if a string is a palindrome",
+    "language": "cpp",
+    "code": "bool isPalindrome(const std::string& s) {\n    int left = 0, right = static_cast<int>(s.size()) - 1;\n    while (left < right) {\n        if (s[left] != s[right]) return false;\n        left++;\n        right--;\n    }\n    return true;\n}"
+  },
+  {
+    "instruction": "Write a Rust function to add two numbers",
+    "language": "rust",
+    "code": "fn add(a: i32, b: i32) -> i32 {\n    a + b\n}"
+  },
+  {
+    "instruction": "Write a Rust function to check if a number is even",
+    "language": "rust",
+    "code": "fn is_even(n: i32) -> bool {\n    n % 2 == 0\n}"
+  },
+  {
+    "instruction": "Write a Rust function to reverse a string",
+    "language": "rust",
+    "code": "fn reverse_string(s: &str) -> String {\n    s.chars().rev().collect()\n}"
+  },
+  {
+    "instruction": "Write a Rust function to calculate factorial",
+    "language": "rust",
+    "code": "fn factorial(n: u64) -> u64 {\n    match n {\n        0 | 1 => 1,\n        _ => n * factorial(n - 1),\n    }\n}"
+  },
+  {
+    "instruction": "Write a Rust struct for a Point with a method",
+    "language": "rust",
+    "code": "struct Point {\n    x: f64,\n    y: f64,\n}\n\nimpl Point {\n    fn new(x: f64, y: f64) -> Self {\n        Self { x, y }\n    }\n\n    fn distance(&self, other: &Point) -> f64 {\n        ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()\n    }\n}"
+  },
+  {
+    "instruction": "Write a Rust function that returns a Result",
+    "language": "rust",
+    "code": "fn divide(a: f64, b: f64) -> Result<f64, String> {\n    if b == 0.0 {\n        Err(\"Cannot divide by zero\".to_string())\n    } else {\n        Ok(a / b)\n    }\n}"
+  },
+  {
+    "instruction": "Write a Rust function to find max in a slice",
+    "language": "rust",
+    "code": "fn find_max(nums: &[i32]) -> Option<&i32> {\n    nums.iter().max()\n}"
+  },
+  {
+    "instruction": "Write a Rust enum for a simple Result-like type",
+    "language": "rust",
+    "code": "enum MyResult<T, E> {\n    Ok(T),\n    Err(E),\n}\n\nimpl<T, E> MyResult<T, E> {\n    fn is_ok(&self) -> bool {\n        matches!(self, MyResult::Ok(_))\n    }\n}"
+  },
+  {
+    "instruction": "Write a Rust function using iterators to sum even numbers",
+    "language": "rust",
+    "code": "fn sum_evens(nums: &[i32]) -> i32 {\n    nums.iter().filter(|&&n| n % 2 == 0).sum()\n}"
+  },
+  {
+    "instruction": "Write a Rust trait for printable objects",
+    "language": "rust",
+    "code": "trait Printable {\n    fn print(&self);\n}\n\nstruct Person {\n    name: String,\n}\n\nimpl Printable for Person {\n    fn print(&self) {\n        println!(\"Person: {}\", self.name);\n    }\n}"
+  },
+  {
+    "instruction": "Write a Rust function that reads a file to string",
+    "language": "rust",
+    "code": "use std::fs;\n\nfn read_file(path: &str) -> Result<String, std::io::Error> {\n    fs::read_to_string(path)\n}"
+  },
+  {
+    "instruction": "Write a Rust function to check if a string is a palindrome",
+    "language": "rust",
+    "code": "fn is_palindrome(s: &str) -> bool {\n    let cleaned: String = s\n        .chars()\n        .filter(|c| c.is_alphanumeric())\n        .flat_map(|c| c.to_lowercase())\n        .collect();\n    cleaned == cleaned.chars().rev().collect::<String>()\n}"
+  }
+]
