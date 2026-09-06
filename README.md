@@ -17,29 +17,13 @@ Fine-tuned **CodeT5** model that generates code from natural language descriptio
 
 **Model on Hub:** [sendaljepit/daffa-ai-coder-multilang](https://huggingface.co/sendaljepit/daffa-ai-coder-multilang)
 
+Runs on **ZeroGPU** (free Gradio Spaces).
+
 ## ✨ Supported Languages
 
-| Language     | Status |
-|--------------|--------|
-| Python       | ✅     |
-| JavaScript   | ✅     |
-| TypeScript   | ✅     |
-| Java         | ✅     |
-| SQL          | ✅     |
-| Go           | ✅     |
-| PHP          | ✅     |
-| HTML / CSS   | ✅     |
-| C++          | ✅     |
-| Rust         | ✅     |
+Python · JavaScript · TypeScript · Java · SQL · Go · PHP · HTML · CSS · C++ · Rust
 
-## 🚀 Quick Start (Inference)
-
-```bash
-pip install -r requirements.txt
-python app.py
-```
-
-Or use the model directly:
+## 🚀 Usage
 
 ```python
 from transformers import pipeline
@@ -52,41 +36,7 @@ coder = pipeline(
 print(coder("Generate python code: Write a function to reverse a string")[0]["generated_text"])
 ```
 
-## 🏋️ Training
-
-### Recommended: Google Colab (GPU gratis)
-
-1. Buka [Google Colab](https://colab.research.google.com/)
-2. Upload `train_colab.ipynb` atau clone repo ini
-3. Runtime → Change runtime type → **T4 GPU**
-4. Jalankan semua cell
-
-### Local script
-
-```bash
-pip install -r requirements.txt
-python train.py
-```
-
-## 📁 Project Structure
-
-```
-fine-tuning-AI_coder/
-├── app.py
-├── train.py
-├── train_colab.ipynb
-├── data/multi_lang_dataset.json
-├── requirements.txt
-└── README.md
-```
-
-## 🛠️ Tech Stack
-
-- **Base Model**: [Salesforce/codet5-small](https://huggingface.co/Salesforce/codet5-small)
-- **Fine-tuned**: [sendaljepit/daffa-ai-coder-multilang](https://huggingface.co/sendaljepit/daffa-ai-coder-multilang)
-- **UI**: Gradio (Hugging Face Spaces)
-
 ## 🔗 Links
 
-- [Model on Hub](https://huggingface.co/sendaljepit/daffa-ai-coder-multilang)
-- [CodeT5 Paper](https://arxiv.org/abs/2109.00859)
+- [Model](https://huggingface.co/sendaljepit/daffa-ai-coder-multilang)
+- [GitHub](https://github.com/daffadevhosting/fine-tuning-AI_coder)

@@ -1,7 +1,6 @@
 transformers==4.46.3
 torch
-gradio==4.44.0
-huggingface-hub==0.26.5
 sentencepiece
 protobuf
 accelerate
+huggingface-hub>=0.25.0,<1.0
