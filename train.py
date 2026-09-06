@@ -47,7 +47,7 @@ def load_dataset(path: Path) -> Dataset:
         })
 
     ds = Dataset.from_list(records)
-    print(f"✅ Loaded {len(ds)} samples")
+    print(f"\u2705 Loaded {len(ds)} samples")
     print(f"   Languages: {sorted(set(r['language'] for r in records))}")
     return ds
 
@@ -104,7 +104,7 @@ def main(args):
     print(f"Train: {len(train_ds)} | Eval: {len(eval_ds)}")
 
     # 2. Load model & tokenizer
-    print(f"\n📦 Loading model: {args.model_name}")
+    print(f"\n\ud83d\udce6 Loading model: {args.model_name}")
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     model = AutoModelForSeq2SeqLM.from_pretrained(args.model_name)
 
@@ -131,7 +131,7 @@ def main(args):
         try:
             from peft import LoraConfig, get_peft_model, TaskType
 
-            print("🔧 Applying LoRA...")
+            print("\ud83d\udd27 Applying LoRA...")
             lora_config = LoraConfig(
                 r=args.lora_r,
                 lora_alpha=args.lora_alpha,
@@ -143,7 +143,7 @@ def main(args):
             model = get_peft_model(model, lora_config)
             model.print_trainable_parameters()
         except ImportError:
-            print("⚠️  peft not installed — continuing without LoRA")
+            print("\u26a0\ufe0f  peft not installed \u2014 continuing without LoRA")
             args.use_lora = False
 
     # 5. Training arguments
@@ -188,19 +188,19 @@ def main(args):
     )
 
     # 6. Train
-    print("\n🚀 Starting training...")
+    print("\n\ud83d\ude80 Starting training...")
     train_result = trainer.train()
 
     # 7. Save
-    print(f"\n💾 Saving model to {args.output_dir}")
+    print(f"\n\ud83d\udcbe Saving model to {args.output_dir}")
     trainer.save_model(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
 
     metrics = train_result.metrics
-    print(f"\n✅ Training finished. Metrics: {metrics}")
+    print(f"\n\u2705 Training finished. Metrics: {metrics}")
 
     if args.push_to_hub:
-        print("📤 Pushing to Hugging Face Hub...")
+        print("\ud83d\udce4 Pushing to Hugging Face Hub...")
         trainer.push_to_hub()
 
 
