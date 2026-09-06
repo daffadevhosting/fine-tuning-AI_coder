@@ -1,9 +1,10 @@
 """
-Daffa AI Coder — Multi-language Code Generator
+Daffa AI Coder — ZeroGPU-compatible Gradio Space
 Model: https://huggingface.co/sendaljepit/daffa-ai-coder-multilang
 """
 
 import gradio as gr
+import spaces
 from transformers import pipeline
 
 MODEL_PATH = "sendaljepit/daffa-ai-coder-multilang"
@@ -22,22 +23,32 @@ SUPPORTED_LANGUAGES = [
     "rust",
 ]
 
-# Load once at startup (CPU Space is fine for CodeT5-small)
-coder = pipeline(
-    "text2text-generation",
-    model=MODEL_PATH,
-    tokenizer=MODEL_PATH,
-    max_new_tokens=256,
-    num_beams=3,
-)
+_pipe = None
 
 
+def get_pipe():
+    """Load model only when GPU is available (inside @spaces.GPU)."""
+    global _pipe
+    if _pipe is None:
+        _pipe = pipeline(
+            "text2text-generation",
+            model=MODEL_PATH,
+            tokenizer=MODEL_PATH,
+            max_new_tokens=256,
+            num_beams=3,
+            device_map="auto",
+        )
+    return _pipe
+
+
+@spaces.GPU(duration=60)
 def generate_code(instruction: str, language: str) -> str:
     if not instruction or not str(instruction).strip():
         return "# Please enter a description first."
+
     prompt = f"Generate {language} code: {str(instruction).strip()}"
-    out = coder(prompt)
-    return out[0]["generated_text"]
+    result = get_pipe()(prompt)
+    return result[0]["generated_text"]
 
 
 demo = gr.Interface(
@@ -54,13 +65,13 @@ demo = gr.Interface(
             label="Programming Language",
         ),
     ],
-    outputs=gr.Code(language="python", label="Generated Code"),
+    outputs=gr.Textbox(lines=16, label="Generated Code"),
     title="\ud83d\udc0d Daffa AI Coder",
     description=(
-        "Multi-language code generation from natural language. "
-        "Model: [sendaljepit/daffa-ai-coder-multilang](https://huggingface.co/sendaljepit/daffa-ai-coder-multilang) "
-        "(fine-tuned CodeT5-small). "
-        "Languages: Python, JavaScript, TypeScript, Java, SQL, Go, PHP, HTML, CSS, C++, Rust."
+        "Multi-language code generation (fine-tuned CodeT5-small). "
+        "Model: [sendaljepit/daffa-ai-coder-multilang]"
+        "(https://huggingface.co/sendaljepit/daffa-ai-coder-multilang). "
+        "Runs on **ZeroGPU** \u2014 first request may be slower while the model loads."
     ),
     examples=[
         ["Write a function to add two numbers", "python"],
@@ -70,8 +81,9 @@ demo = gr.Interface(
         ["Write a method to calculate factorial", "java"],
         ["Write CSS to center a div", "css"],
     ],
-    allow_flagging="never",
+    cache_examples=False,
 )
 
-if __name__ == "__main__":
-    demo.launch()
+# HF Spaces + ZeroGPU: do not set share=True
+demo.queue(max_size=10)
+demo.launch()
