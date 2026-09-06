@@ -11,7 +11,8 @@ from pathlib import Path
 import numpy as np
 import evaluate
 from datasets import Dataset
-from transformers import (
+from transformers
+import (
     AutoTokenizer,
     AutoModelForSeq2SeqLM,
     Seq2SeqTrainingArguments,
