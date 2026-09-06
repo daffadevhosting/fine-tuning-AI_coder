@@ -98,8 +98,9 @@ MODEL_PATH = "your-username/daffa-ai-coder" # from Hub
 fine-tuning-AI_coder/
 ├── app.py                      # Gradio demo
 ├── train.py                    # Clean training pipeline
+├── train_colab.ipynb           # Colab notebook (GPU)
 ├── data/
-│   └── multi_lang_dataset.json # Multi-language dataset
+│   └── multi_lang_dataset.json # 167 samples, 11 languages
 ├── requirements.txt
 └── README.md
 ```
@@ -114,7 +115,7 @@ fine-tuning-AI_coder/
 
 ## 📈 Improving the Model
 
-Current dataset is small (~55 samples). For better results:
+Current dataset has **167 samples** across 11 languages. For better results:
 
 1. Add more examples per language (aim for 200–500+)
 2. Use `Salesforce/codet5-base` or larger
