@@ -5,13 +5,12 @@ Uses CodeT5 (Salesforce) — designed specifically for code.
 
 import json
 import os
-import argparse
-from pathlib import Path
+import argparse from pathlib
+import Path
 
 import numpy as np
-import evaluate
-from datasets import Dataset
-from transformers
+import evaluate from datasets
+import Dataset from transformers
 import (
     AutoTokenizer,
     AutoModelForSeq2SeqLM,
